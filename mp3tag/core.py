@@ -10,27 +10,27 @@ def confirm(text):
             continue
         return answ == "y" or answ == "Y"
 
-def printHelp(fileName):
+def print_help(fileName):
     print "use %s [-r] [-c] [-v] <target directory>" % os.path.basename(fileName)
     print " -r  - recursive"
     print " -v  - verbose"
     print " -c  - auto-confirmation"
 
-def parseArgs(args):
+def parse_args(args):
     ''' parses command line arguments '''
     if(len(args) <= 1):
-        printHelp(args[0])
+        print_help(args[0])
         return None
     v = '-v' in args
     r = '-r' in args
     c = '-c' in args
     t = args[-1]
     if not os.path.exists(t):
-        printHelp(args[0])
+        print_help(args[0])
         return None
     return { 'verbose': v, 'recursive': r, 'confirm': c, 'target': t }
 
-def mp3filter(f):
+def mp3_filter(f):
     return f[-4:] == ".mp3"
 
 def list_files(target, filt = None, recursive = False):    

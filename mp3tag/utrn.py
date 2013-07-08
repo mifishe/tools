@@ -1,7 +1,7 @@
 from mutagen.easyid3 import EasyID3
 import os, sys, re, core
 
-romanMap =  {
+roman_map =  {
     100 : 'C',
     90  : 'XC',
     50  : 'L', 
@@ -14,30 +14,30 @@ romanMap =  {
 }
 
 #evaluating keys
-romanKeys = list(reversed(sorted(romanMap.keys())))
+roman_keys = list(reversed(sorted(roman_map.keys())))
 
-def toRoman(numb):
+def to_roman(numb):
     ''' converts decimal number to roman '''
     roman = ''
-    for i in romanKeys:
+    for i in roman_keys:
         while numb >= i:
-            roman += romanMap[i]
+            roman += roman_map[i]
             numb -= i
     return roman
 
-def checkUntitled(title):
+def is_untitled(title):
     return title == None or title[0] == "Untitled"
 
 def title_files(files, verbose = False, confirm = False):
     ''' changes titles of given mp3 files '''
     for f in files:
         a = EasyID3(f)
-        if checkUntitled(a["title"]):
+        if is_untitled(a["title"]):
             m = re.search('^(\d+)(/\d*)?$', a["tracknumber"][0])
             if m:
                 tn = int(m.group(1))
                 if(confirm or core.confirm("change title for %s?" % f)):
-                    a["title"] = toRoman(tn)
+                    a["title"] = to_roman(tn)
                     if(verbose):
                         print "%s => %s" % (f, a["title"])
                     a.save()
@@ -45,9 +45,9 @@ def title_files(files, verbose = False, confirm = False):
                 
 
 def main(target, recursive = False, verbose = False, confirm = False):
-    title_files(core.list_files(target, core.mp3filter, recursive), verbose, confirm)
+    title_files(core.list_files(target, core.mp3_filter, recursive), verbose, confirm)
 
 if __name__ == '__main__':
-    args = core.parseArgs(sys.argv)
+    args = core.parse_args(sys.argv)
     if(args != None):
         main(args['target'], args['recursive'], args['verbose'], args['confirm'])
