@@ -39,7 +39,7 @@ def title_files(files, verbose = False, confirm = False):
                 if(confirm or core.confirm("change title for %s?" % f)):
                     a["title"] = to_roman(tn)
                     if(verbose):
-                        print "%s => %s" % (f, a["title"])
+                        print ("%s => %s" % (f, a["title"]))
                     a.save()
                 
                 

@@ -6,15 +6,15 @@ def confirm(text):
     while True:
         answ = raw_input(prompt)
         if answ not in  ['y', 'Y', 'n', 'N']:
-            print "enter y or n"
+            print ("enter y or n")
             continue
         return answ == "y" or answ == "Y"
 
 def print_help(fileName):
-    print "use %s [-r] [-c] [-v] <target directory>" % os.path.basename(fileName)
-    print " -r  - recursive"
-    print " -v  - verbose"
-    print " -c  - auto-confirmation"
+    print ("use %s [-r] [-c] [-v] <target directory>" % os.path.basename(fileName))
+    print (" -r  - recursive")
+    print (" -v  - verbose")
+    print (" -c  - auto-confirmation")
 
 def parse_args(args):
     ''' parses command line arguments '''
