@@ -17,7 +17,6 @@ object FetchText {
     def main(args: Array[String]) {
         val regex = "(?ism)\"item_name\">.*?<h2>(.*?)</h2>.*?item_right\">(.*?)</div.*?item_right\">(.*?)</div".r
         val template = "{0}{1}{2}\n"
-        val groups = List(0, 1, 2)
 
         val subUrls = List("email", "url", "addresses", "datetime", "markup", "other", "strings", "phones", "numbers")
         val url = "http://regexp.com.ua/category/"
